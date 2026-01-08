@@ -5,7 +5,7 @@ import SubHeader from "../header/SubHeader";
 import NewsCard from "../../card/NewsCard";
 import { ChevronRight } from "lucide-react";
 
-const NewsPageLayout = () => {
+const   NewsPageLayout = () => {
   return (
     <div className="bg-black relative">
       <SubHeader />

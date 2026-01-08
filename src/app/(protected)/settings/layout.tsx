@@ -6,11 +6,12 @@ import { ReactNode } from "react";
 
 export default function SettingsLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="relative min-h-screen">
-      <MainHeader />
-      <div className="max-w-7xl mx-auto flex px-8 py-32">
+    <div className="p-6">
+      <div className="max-w-7xl mx-auto flex bg-background border rounded-lg">
         <AccountSideBar />
-        <div className="w-full px-16 space-y-12">{children}</div>
+        <div className="w-full px-12 py-8 space-y-12 border-l h-[calc(100vh-120px)] overflow-auto">
+          {children}
+        </div>
       </div>
     </div>
   );

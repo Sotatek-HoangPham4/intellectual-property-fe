@@ -4,6 +4,20 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:9000/api/v1";
 
+export type UserSearchItem = {
+  id: string;
+  email: string;
+  username?: string | null;
+  fullname?: string | null;
+  avatar_url?: string | null;
+};
+
+type UserSearchResponse = {
+  status: "success" | "error";
+  message?: string;
+  data?: UserSearchItem[] | { users?: UserSearchItem[] };
+};
+
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: baseQueryWithReauth,
@@ -139,6 +153,20 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+
+    searchUsersByEmail: builder.query<UserSearchItem[], string>({
+      query: (q) => ({
+        url: `/users/search?email=${encodeURIComponent(q)}`,
+        method: "GET",
+      }),
+      transformResponse: (res: UserSearchResponse) => {
+        // tùy BE trả data là array hay {users:[]}
+        const d: any = res?.data;
+        if (Array.isArray(d)) return d;
+        if (d?.users && Array.isArray(d.users)) return d.users;
+        return [];
+      },
+    }),
   }),
 });
 
@@ -164,4 +192,5 @@ export const {
   useVerifyCurrentEmailMutation,
   useVerifyNewEmailMutation,
   useConfirmNewEmailMutation,
+  useSearchUsersByEmailQuery,
 } = userApi;

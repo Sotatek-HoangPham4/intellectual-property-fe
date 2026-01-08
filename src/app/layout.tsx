@@ -22,7 +22,7 @@ export default function RootLayout({
               position="top-center"
               reverseOrder={false}
               toastOptions={{
-                duration: 3000,
+                duration: 1000,
                 style: {
                   fontSize: 13,
                   background: "#222",
@@ -32,7 +32,12 @@ export default function RootLayout({
                 },
               }}
             />
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="light"
+              enableSystem
+              disableTransitionOnChange
+            >
               {children}
             </ThemeProvider>
           </PersistGate>

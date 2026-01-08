@@ -2,9 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { cn } from "@/shared/lib/utils";
-import { useLogin } from "@/features/auth/application/loginUseCase";
-import { Button } from "../../../../shared/components/ui/button";
-import { Input } from "../../../../shared/components/ui/input";
+
 import { Label } from "../../../../shared/components/ui/label";
 import toast from "react-hot-toast";
 import Link from "next/link";
@@ -14,6 +12,10 @@ import { TbPasswordFingerprint } from "react-icons/tb";
 import { FaApple, FaFacebookF, FaGoogle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useLogin } from "../../application/hooks/useLogin";
+import { Loader2 } from "lucide-react";
 
 interface FormData {
   email: string;
@@ -29,7 +31,7 @@ export function LoginForm({
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-  const { login, isLoading } = useLogin();
+  const { login, isSubmitting } = useLogin();
 
   const onSubmit = async (data: FormData) => {
     await login(data);
@@ -38,17 +40,8 @@ export function LoginForm({
   const authState = useSelector((state: RootState) => state.auth);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 w-full max-w-xs">
       <div className="flex flex-col items-center gap-6">
-        <div className="h-12 w-12 flex items-center justify-center p-2  border rounded-xl">
-          <Image
-            src={"/icons/logo-only.svg"}
-            alt="logo-only"
-            width={36}
-            height={36}
-            className="hover:scale-110 transition-all duration-150 cursor-pointer"
-          />
-        </div>
         <div className="text-center">
           <p className="font-semibold text-2xl">Login to your account</p>
           <p className="text-muted-foreground">
@@ -68,7 +61,6 @@ export function LoginForm({
               <Input
                 id="email"
                 type="email"
-                startIcon={<MdEmail />}
                 placeholder="user@example.com"
                 {...register("email", { required: "Email is required" })}
               />
@@ -90,7 +82,6 @@ export function LoginForm({
               <Input
                 id="password"
                 type="password"
-                startIcon={<TbPasswordFingerprint />}
                 placeholder="--------"
                 {...register("password", { required: "Password is required" })}
               />
@@ -99,35 +90,39 @@ export function LoginForm({
               )}
             </div>
 
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? "Logging in..." : "Login"}
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Logging in...
+                </>
+              ) : (
+                "Login"
+              )}
             </Button>
           </div>
         </form>
 
         <div className="space-y-6">
-          <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
+          <div className="relative text-center text-sm">
             <span className="bg-background text-muted-foreground relative z-10 px-2">
               Or continue with
             </span>
           </div>
 
-          <div className="grid grid-cols-3 gap-3">
-            <Button variant="outline" className="w-full">
-              <FaGoogle />
-            </Button>
-            <Button variant="outline" className="w-full">
-              <FaFacebookF />
-            </Button>
-            <Button variant="outline" className="w-full">
-              <FaApple />
-            </Button>
-          </div>
-          <div className="text-center text-xs">
-            Don't have an account?{" "}
-            <a href="/register" className="underline underline-offset-2">
-              Sign up
-            </a>
+          <Button variant="outline" className="w-full">
+            <FaGoogle /> Google
+          </Button>
+          <div className="space-y-2">
+            <p className="text-center text-muted-foreground text-xs">
+              By continuing, you agree to our Terms and Privacy Policy.
+            </p>
+            <div className="text-center text-muted-foreground text-xs">
+              Don't have an account?{" "}
+              <a href="/register" className="underline underline-offset-2">
+                Sign up
+              </a>
+            </div>
           </div>
         </div>
       </div>

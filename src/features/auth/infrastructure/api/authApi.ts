@@ -1,3 +1,4 @@
+import { ApiResponse } from "@/core/domain/types/api-response";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const BASE_URL =
@@ -5,7 +6,6 @@ const BASE_URL =
 
 export const authApi = createApi({
   reducerPath: "authApi",
-
   baseQuery: fetchBaseQuery({
     baseUrl: `${BASE_URL}/auth`,
     credentials: "include",
@@ -36,11 +36,25 @@ export const authApi = createApi({
       }),
     }),
 
-    login: builder.mutation<LoginResponse, LoginRequest>({
-      query: (data) => ({
+    login: builder.mutation<ApiResponse<LoginResponse>, LoginRequest>({
+      query: (body) => ({
         url: "login",
         method: "POST",
-        body: data,
+        body,
+      }),
+    }),
+
+    logout: builder.mutation<{ message: string }, void>({
+      query: () => ({
+        url: "logout",
+        method: "POST",
+      }),
+    }),
+
+    getMe: builder.query<ApiResponse<any>, void>({
+      query: () => ({
+        url: "me",
+        method: "GET",
       }),
     }),
 
@@ -73,6 +87,8 @@ export const {
   useVerifyRegisterOTPMutation,
   useRegisterMutation,
   useLoginMutation,
+  useLogoutMutation,
+  useLazyGetMeQuery,
   useForgotPasswordMutation,
   useResetPasswordMutation,
   useRefreshTokenMutation,

@@ -4,12 +4,12 @@ import { useRequireAuth } from "@/features/auth/presentation/hooks/useRequireAut
 import { ReactNode } from "react";
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
-  const { loading } = useRequireAuth({
-    redirectIfAuthenticated: "/home",
-  });
+  // const { loading } = useRequireAuth({
+  //   redirectIfAuthenticated: "/home",
+  // });
 
-  // ⚡️ chưa load xong thì không render gì → tránh flash login page
-  if (loading) return <>Loadinggg</>;
+  // // ⚡️ chưa load xong thì không render gì → tránh flash login page
+  // if (loading) return <>Loadinggg</>;
 
   return <>{children}</>;
 }

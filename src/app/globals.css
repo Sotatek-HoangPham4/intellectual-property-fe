@@ -120,7 +120,16 @@
     @apply bg-background text-foreground;
   }
   p {
-    letter-spacing: -0.025em;
+    /* letter-spacing: -0.025em; */
     font-size: 14px;
   }
+}
+
+.page-break {
+  height: 0;
+  page-break-after: always;
+}
+
+[data-heading-id] {
+  scroll-margin-top: 160px;
 }

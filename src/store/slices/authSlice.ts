@@ -21,6 +21,11 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.isTokenExpired = false;
     },
+    setAuthenticated: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+      state.isAuthenticated = true;
+      state.isTokenExpired = false;
+    },
     setAccessToken: (state, action: PayloadAction<string>) => {
       state.accessToken = action.payload;
     },
@@ -49,6 +54,7 @@ const authSlice = createSlice({
 
 export const {
   setCredentials,
+  setAuthenticated,
   setAccessToken,
   setTokenExpired,
   clearCredentials,

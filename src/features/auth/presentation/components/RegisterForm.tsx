@@ -2,9 +2,7 @@
 import { useForm } from "react-hook-form";
 import { cn } from "@/shared/lib/utils";
 import { useRegister } from "@/features/auth/application/registerUseCase";
-import { Label } from "../../../../shared/components/ui/label";
-import { Input } from "../../../../shared/components/ui/input";
-import { Button } from "../../../../shared/components/ui/button";
+
 import toast from "react-hot-toast";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +12,9 @@ import { FaGoogle } from "react-icons/fa";
 import { FaApple } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { useRegisterOTP } from "@/features/auth/application/registerOTPUseCase";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 interface FormData {
   email: string;
@@ -39,7 +40,7 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 w-full max-w-xs">
       <div className="flex flex-col items-center gap-6">
         <div className="h-12 w-12 flex items-center justify-center p-2  border rounded-xl">
           <Image
@@ -71,7 +72,6 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
               <Input
                 id="email"
                 type="email"
-                startIcon={<MdEmail />}
                 placeholder="user@example.com"
                 {...registerField("email", { required: "Email is required" })}
               />
@@ -84,7 +84,6 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
               <Input
                 id="password"
                 type="password"
-                startIcon={<TbPasswordFingerprint />}
                 placeholder="--------"
                 {...registerField("password", {
                   required: "Password is required",
@@ -127,21 +126,21 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
           By signing up, you agree to our
           <Link
             href={"/terms"}
-            className="underline underline-offset-2 mx-1 text-foreground/100"
+            className="underline underline-offset-2 mx-1 text-foreground"
           >
             Terms
           </Link>
           ,
           <Link
             href={"/terms"}
-            className="underline underline-offset-2 mx-1 text-foreground/100"
+            className="underline underline-offset-2 mx-1 text-foreground"
           >
             Acceptable Use
           </Link>
           , and{" "}
           <Link
             href={"/terms"}
-            className="underline underline-offset-2 mx-1 text-foreground/100"
+            className="underline underline-offset-2 mx-1 text-foreground"
           >
             Privacy Policy.
           </Link>

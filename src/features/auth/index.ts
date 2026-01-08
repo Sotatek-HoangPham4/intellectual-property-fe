@@ -33,7 +33,6 @@ interface LoginRequest {
 interface LoginResponse {
   accessToken: string;
   refreshToken: string;
-  user: any;
 }
 
 interface ForgotPasswordResponse {

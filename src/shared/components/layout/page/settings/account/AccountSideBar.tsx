@@ -6,14 +6,21 @@ import { usePathname } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { Button } from "@/shared/components/ui/button";
-import { Bell, LifeBuoy, MonitorSmartphone, Settings2 } from "lucide-react";
+import {
+  Bell,
+  LifeBuoy,
+  MonitorSmartphone,
+  Settings2,
+  User,
+  UserCircle,
+} from "lucide-react";
 
 const AccountSideBar = () => {
   const user = useSelector((state: RootState) => state.auth);
   const pathname = usePathname();
 
   const navItems = [
-    { href: "/settings/account", label: "Account", icon: null },
+    { href: "/settings/account", label: "Account", icon: <UserCircle /> },
     {
       href: "/settings/devices",
       label: "Devices",
@@ -38,9 +45,9 @@ const AccountSideBar = () => {
   ];
 
   return (
-    <div className="max-w-60 flex flex-col gap-4 sticky self-start top-32 h-fit ">
+    <div className="max-w-60 flex flex-col gap-4 h-fit p-2">
       {/* Account Section */}
-      <div className="mt-1">
+      <div className="">
         {navItems.map((item, index) => (
           <Link key={index} href={item.href}>
             <Button

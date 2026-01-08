@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { cn } from "@/shared/lib/utils";
-import { useLogin } from "@/features/auth/application/loginUseCase";
+
 import { Button } from "../../../../shared/components/ui/button";
 import { Input } from "../../../../shared/components/ui/input";
 import { Label } from "../../../../shared/components/ui/label";
@@ -14,6 +14,7 @@ import { TbPasswordFingerprint } from "react-icons/tb";
 import { FaApple, FaFacebookF, FaGoogle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { useLogin } from "@/features/auth/application/hooks/useLogin";
 
 interface FormData {
   email: string;

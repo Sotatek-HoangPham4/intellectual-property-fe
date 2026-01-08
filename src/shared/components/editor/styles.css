@@ -1,0 +1,30 @@
+.page {
+  background: white;
+  margin: 24px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.page-content {
+  min-height: 960px;
+}
+
+.editor-container {
+  background: #f1f3f4;
+  padding: 40px 0;
+}
+
+/* Ẩn outline mặc định */
+[contenteditable="true"] {
+  outline: none;
+}
+
+/* Ẩn border khi focus */
+[contenteditable="true"]:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Tránh Safari viền xanh */
+[contenteditable="true"]::-webkit-focus-ring-color {
+  outline: none;
+}
