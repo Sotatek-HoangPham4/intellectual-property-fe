@@ -51,12 +51,12 @@ export const authApi = createApi({
       }),
     }),
 
-    getMe: builder.query<ApiResponse<any>, void>({
-      query: () => ({
-        url: "me",
-        method: "GET",
-      }),
-    }),
+    // getMe: builder.query<ApiResponse<any>, void>({
+    //   query: () => ({
+    //     url: "me",
+    //     method: "GET",
+    //   }),
+    // }),
 
     forgotPassword: builder.mutation<ForgotPasswordResponse, any>({
       query: (data) => ({
@@ -88,7 +88,6 @@ export const {
   useRegisterMutation,
   useLoginMutation,
   useLogoutMutation,
-  useLazyGetMeQuery,
   useForgotPasswordMutation,
   useResetPasswordMutation,
   useRefreshTokenMutation,

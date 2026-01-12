@@ -1,3 +1,4 @@
+import { ApiResponse } from "@/core/domain/types/api-response";
 import { baseQueryWithReauth } from "@/store/middlewares/baseQueryWithReauth";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -54,10 +55,18 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
-    getMe: builder.query<any, void>({
-      query: () => `me`,
-      providesTags: ["User"],
+    // getMe: builder.query<any, void>({
+    //   query: () => `me`,
+    //   providesTags: ["User"],
+    // }),
+
+    getMe: builder.query<ApiResponse<any>, void>({
+      query: () => ({
+        url: "/auth/me",
+        method: "GET",
+      }),
     }),
+
     updateMe: builder.mutation<any, any>({
       query: (body) => ({
         url: `me`,
@@ -176,7 +185,7 @@ export const {
   useCreateUserMutation,
   useUpdateUserMutation,
   useDeleteUserMutation,
-  useGetMeQuery,
+  useLazyGetMeQuery,
   useUpdateMeMutation,
   // Verify Identity
   useVerifyIdentityMutation,

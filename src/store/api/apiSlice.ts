@@ -13,6 +13,24 @@ export const apiSlice = createApi({
     "Document",
     "Role",
     "Signature",
+
+    // AIC
+    "Portfolio",
+    "Holding",
+    "Dashboard",
+    "RiskReport",
+    "Scenario",
+    "CopilotSession",
+    "CopilotMessage",
+    "CopilotRun",
+
+    // ADMIN
+    "AdminMetrics",
+    "AdminUser",
+    "AdminPortfolio",
+    "AdminCopilot",
+    "AdminRisk",
+    "AdminSettings",
   ],
   endpoints: () => ({}),
 });

@@ -16,6 +16,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import { userApi } from "@/features/user/infrastructure/api/userApi";
 import { documentApi } from "@/features/document/infrastructure/api/documentApi";
+import { portfolioApi } from "@/features/portfolio/infrastructure/api/portfolioApi";
 
 const authPersistConfig = {
   key: "auth",
@@ -26,6 +27,7 @@ const authPersistConfig = {
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   [authApi.reducerPath]: authApi.reducer,
+  [portfolioApi.reducerPath]: portfolioApi.reducer,
   [userApi.reducerPath]: userApi.reducer,
   [documentApi.reducerPath]: documentApi.reducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
@@ -40,6 +42,7 @@ export const store = configureStore({
       },
     }).concat(
       authApi.middleware,
+      portfolioApi.middleware,
       userApi.middleware,
       documentApi.middleware,
       apiSlice.middleware

@@ -2,13 +2,11 @@
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  useLoginMutation,
-  useLazyGetMeQuery,
-} from "@/features/auth/infrastructure/api/authApi";
+import { useLoginMutation } from "@/features/auth/infrastructure/api/authApi";
 import { setAuthenticated } from "@/store/slices/authSlice";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useLazyGetMeQuery } from "@/features/user/infrastructure/api/userApi";
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
