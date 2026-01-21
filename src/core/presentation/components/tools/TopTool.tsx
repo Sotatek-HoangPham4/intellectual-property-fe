@@ -63,7 +63,7 @@ const TopTool = ({
         value={timeframe}
         onValueChange={(val) => setTimeframe(val as any)}
       >
-        <SelectTrigger className="p-2.5">
+        <SelectTrigger className="p-2.5 bg-white">
           {/* Trigger chỉ hiển thị short key */}
           {timeframe}
         </SelectTrigger>

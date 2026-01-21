@@ -61,7 +61,9 @@ export default function ChartToolbar({
             className="rounded-full"
             alt=""
           />
-          <p className="text-[15px] font-normal">Gold Spot / U.S. Dollar</p>
+          <p className="text-[15px] font-normal text-white">
+            Gold Spot / U.S. Dollar
+          </p>
         </Button>
         <div className="w-fit group/item h-6 rounded hover:outline-1">
           <div className="text-xs flex items-center px-2 py-0.5">
